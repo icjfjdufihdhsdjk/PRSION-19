@@ -1,0 +1,219 @@
+:root {
+  color-scheme: dark;
+  --ink: #10181d;
+  --panel: #142128;
+  --paper: #e7e6d4;
+  --muted: #8ba09d;
+  --signal: #e1bf59;
+  --mint: #78c0ad;
+  --line: rgba(190, 215, 209, 0.2);
+}
+
+* { box-sizing: border-box; }
+
+html,
+body {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  overflow: hidden;
+  background: var(--ink);
+  color: var(--paper);
+  font-family: "Courier New", monospace;
+}
+
+button { font: inherit; }
+
+.app {
+  display: grid;
+  grid-template-rows: 70px minmax(0, 1fr) 28px;
+  width: 100vw;
+  height: 100dvh;
+  min-height: 500px;
+}
+
+.topbar {
+  z-index: 5;
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  align-items: center;
+  padding: 0 22px;
+  border-bottom: 1px solid var(--line);
+  background: #111b20;
+}
+
+.topbar small {
+  color: #728682;
+  font-size: 8px;
+  letter-spacing: .18em;
+}
+
+h1 {
+  margin: 4px 0 0;
+  color: #f0ead0;
+  font-size: 23px;
+  letter-spacing: .15em;
+}
+
+.topbar p {
+  display: flex;
+  gap: 9px;
+  align-items: center;
+  margin: 0;
+  font-size: 10px;
+  letter-spacing: .08em;
+}
+
+.topbar i,
+.activity i {
+  width: 7px;
+  height: 7px;
+  background: #74c59f;
+  box-shadow: 0 0 10px #74c59f;
+  animation: blink 2s steps(2) infinite;
+}
+
+.topbar time {
+  justify-self: end;
+  color: var(--signal);
+  font-size: 21px;
+  letter-spacing: .1em;
+}
+
+@keyframes blink { 50% { opacity: .45; } }
+
+.stage {
+  position: relative;
+  min-height: 0;
+  overflow: hidden;
+  background: radial-gradient(circle, #27383c, #0b1217 70%);
+}
+
+canvas {
+  position: absolute;
+  inset: 0;
+  display: block;
+  width: 100%;
+  height: 100%;
+  image-rendering: pixelated;
+  cursor: grab;
+  touch-action: none;
+}
+
+canvas:active { cursor: grabbing; }
+
+.scanlines {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: linear-gradient(rgba(160, 210, 202, .018) 50%, transparent 50%) 0 0 / 100% 4px;
+  box-shadow: inset 0 0 100px rgba(0, 0, 0, .42);
+}
+
+.help,
+.controls,
+.card {
+  position: absolute;
+  z-index: 3;
+  border: 1px solid var(--line);
+  background: rgba(17, 29, 35, .9);
+  backdrop-filter: blur(7px);
+}
+
+.help {
+  top: 14px;
+  left: 14px;
+  display: grid;
+  gap: 5px;
+  padding: 10px 12px;
+  font-size: 9px;
+}
+
+.help span { color: var(--muted); }
+
+.controls {
+  right: 14px;
+  bottom: 14px;
+  display: grid;
+  grid-template-columns: repeat(5, 38px);
+  align-items: center;
+  overflow: hidden;
+}
+
+.controls button,
+.controls output {
+  display: grid;
+  place-items: center;
+  width: 38px;
+  height: 38px;
+  border: 0;
+  border-right: 1px solid var(--line);
+  background: transparent;
+  color: var(--paper);
+}
+
+.controls button { cursor: pointer; }
+.controls button:hover { background: rgba(225, 191, 89, .14); color: var(--signal); }
+.controls output { color: var(--signal); font-size: 9px; }
+
+.card {
+  top: 14px;
+  right: 14px;
+  width: min(310px, calc(100vw - 28px));
+  padding: 20px;
+  box-shadow: 0 18px 50px rgba(0, 0, 0, .35);
+}
+
+.card[hidden] { display: none; }
+.card > small { color: var(--signal); font-size: 8px; letter-spacing: .14em; }
+.card h2 { margin: 9px 0 2px; font-size: 20px; }
+.card > strong { color: var(--mint); font-size: 10px; text-transform: uppercase; }
+.card > p { color: #b8c6c2; font-size: 11px; line-height: 1.55; }
+
+.close {
+  position: absolute;
+  top: 8px;
+  right: 9px;
+  border: 0;
+  background: none;
+  color: var(--muted);
+  font-size: 22px;
+  cursor: pointer;
+}
+
+.activity {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  margin-top: 16px;
+  padding-top: 14px;
+  border-top: 1px solid var(--line);
+}
+
+.activity span { display: grid; gap: 3px; }
+.activity small { color: var(--muted); font-size: 7px; }
+.activity b { font-size: 10px; }
+
+footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 16px;
+  border-top: 1px solid var(--line);
+  background: #111b20;
+  color: #7f928f;
+  font-size: 8px;
+  letter-spacing: .08em;
+}
+
+footer span:first-child { color: #7ec8a5; }
+
+@media (max-width: 700px) {
+  .app { grid-template-rows: 58px minmax(0, 1fr) 24px; }
+  .topbar { grid-template-columns: 1fr auto; padding: 0 12px; }
+  .topbar p { display: none; }
+  .topbar time { font-size: 17px; }
+  h1 { font-size: 18px; }
+  .help span { display: none; }
+  footer span:last-child { display: none; }
+}
