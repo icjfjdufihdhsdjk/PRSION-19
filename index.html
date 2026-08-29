@@ -3,25 +3,39 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Prison World</title>
+
+    <title>PRSION-19</title>
+
     <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
 
-    <div id="game-container">
+    <main id="game-container">
+
         <canvas id="game"></canvas>
 
-        <div id="title">
-            COMPLEXE PÉNITENTIAIRE
+        <header class="hud">
+            <div class="logo">
+                PRSION-19
+            </div>
+
+            <div class="location">
+                ACCUEIL
+            </div>
+        </header>
+
+        <div class="hint">
+            <span>🖱</span>
+            Glisser pour observer
+            <br>
+            <span>＋ / −</span>
+            Molette pour zoomer
         </div>
 
-        <div id="controls">
-            Molette : zoom
-            <br>
-            Clic gauche + déplacement : caméra
-        </div>
-    </div>
+    </main>
 
     <script src="game.js"></script>
+
 </body>
 </html>
