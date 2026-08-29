@@ -15,8 +15,8 @@ const WORLD = { width: 1600, height: 1000 };
 const CYCLE = 110;
 const background = new Image();
 const atlas = new Image();
-background.src = "./assets/reception.png";
-atlas.src = "./assets/characters.png";
+background.src = "./reception.png";
+atlas.src = "./characters.png";
 
 const camera = { x: 800, y: 500, zoom: 0.75 };
 const pointer = { active: false, moved: false, x: 0, y: 0 };
